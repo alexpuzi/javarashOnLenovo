@@ -33,11 +33,11 @@ public class JavaRush131020202100 {
         selectable = new Food();
         selectable.onSelect();
     }
-
+    //
     interface Selectable {
         void onSelect();
     }
-
+    //
     static class Food implements Selectable{
         public void onEat() {
             System.out.println("The food was eaten");
@@ -48,4 +48,5 @@ public class JavaRush131020202100 {
            System.out.println("The food was selected");
         }
     }
+    //
 }

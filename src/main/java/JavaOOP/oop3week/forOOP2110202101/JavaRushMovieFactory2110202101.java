@@ -3,7 +3,7 @@ package JavaOOP.oop3week.forOOP2110202101;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class JavaRush2110202101 {
+public class JavaRushMovieFactory2110202101 {
     /*
     У нас есть кинофабрика, но она работает не в полную силу.
     Давай расширим ее функционал по аналогии с тем, что уже есть, и добавим чтение с консоли.
@@ -42,6 +42,14 @@ Thriller при передаче ему строки "thriller" в качест�
     public static void main(String[] args) throws Exception {
         //ввести с консоли несколько ключей (строк), пункт 7 >>>
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        String str = bf.readLine();
+        while ((str = bf.readLine()) != null){
+            Movie movie = MovieFactory.getMovie(str);
+            if (movie == null){
+                return;
+            }
+            System.out.println(movie.getClass().getSimpleName());
+        }
         /*
 8 Создать переменную movie класса Movie и для каждой введенной строки(ключа):
 8.1 получить объект используя MovieFactory.getMovie и присвоить его переменной movie
@@ -54,11 +62,22 @@ Thriller при передаче ему строки "thriller" в качест�
 
         static Movie getMovie(String key) {
             Movie movie = null;
+            switch (key){
+                case "soapOpera":
+                    movie = new SoapOpera();
+                    break;
+                case "cartoon":
+                    movie = new Cartoon();
+                    break;
+                case "thriller":
+                    movie = new Thriller();
+                    break;
 
-            //создание объекта SoapOpera (мыльная опера) для ключа "soapOpera"
-            if ("soapOpera".equals(key)) {
-                movie = new SoapOpera();
             }
+            //создание объекта SoapOpera (мыльная опера) для ключа "soapOpera"
+//            if ("soapOpera".equals(key)) {
+//                movie = new SoapOpera();
+//            }
 
             //напишите тут ваш код, пункты 5,6
 
@@ -73,10 +92,10 @@ Thriller при передаче ему строки "thriller" в качест�
     }
 
     //Напишите тут ваши классы, пункт 3
-    static class Cartoon{
+    static class Cartoon extends Movie{
 
     }
-    static class Thriller{
+    static class Thriller extends Movie{
 
     }
 }
